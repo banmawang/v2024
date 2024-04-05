@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .btn {
+        padding: 10px 20px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid transparent; /* 初始边框颜色为透明 */
+        border-radius: 4px;
+        transition: all 0.3s ease; /* 添加过渡效果 */
+        color: #fff;
+        background-color: #409eff;
+        border-color: #409eff;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">打折</button>
+    <label>价格：4599.00</label>
+    <script src="./animation.js"></script>
+    <script>
+      const label = document.querySelector('label')
+      const btn = document.querySelector('.btn')
+
+      btn.onclick = function () {
+        animation(2000, 4599, 30, (val) => {
+          label.textContent = `价格：${val.toFixed(2)}`
+        })
+      }
+    </script>
+  </body>
+</html>
