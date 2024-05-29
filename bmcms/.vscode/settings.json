@@ -1,12 +1,12 @@
 {
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "tsconfig.json": "tsconfig.*.json,README.md,*.json,*.js,.gitignore,.prettierrc,.env*"
+    "tsconfig.json": "tsconfig.*.json,README.md,*.json,*.js,.gitignore,.prettierrc,.env*,.editorconfig"
   },
   "files.exclude": {
     ".vscode": true,
     "test": true,
     "dist": true
   },
-  "files.eol": "\n"
+  "files.eol": "auto"
 }
