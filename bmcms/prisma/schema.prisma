@@ -23,7 +23,6 @@ model User {
   avatar    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  App       Soft[]
 }
 
 model Soft {
@@ -34,6 +33,4 @@ model Soft {
   is_free   Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int
 }

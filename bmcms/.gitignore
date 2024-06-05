@@ -5,6 +5,7 @@ prisma/*
 /dist
 /node_modules
 /build
+/uploads
 
 # Logs
 logs
