@@ -19,7 +19,8 @@ export class AuthController {
    * @returns 注册的用户信息
    */
   @Post('register')
-  register(@Body() dto: RegisterDto) {
+  async register(@Body() dto: RegisterDto) {
+    await this.captcha.verify(dto.captcha as any)
     return this.authService.register(dto)
   }
 

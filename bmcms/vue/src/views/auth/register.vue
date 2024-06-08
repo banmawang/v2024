@@ -10,8 +10,8 @@ const { form, register } = useAuth()
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">会员注册</h2>
           <div class="mt-8">
-            <BmFormInput v-model="form.account" placeholder="请输入邮箱" v-clearError="'account'" />
-            <BmError name="account" />
+            <BmFormInput v-model="form.name" placeholder="请输入邮箱" v-clearError="'name'" />
+            <BmError name="name" />
             <BmFormInput
               v-model="form.password"
               class="mt-3"
@@ -26,6 +26,7 @@ const { form, register } = useAuth()
               placeholder="请输入确认密码"
               v-clearError="'password'" />
           </div>
+          <BmCaptcha class="mt-3" v-model:captcha_value="form.captcha.value" v-model:captcha_key="form.captcha.key" />
           <BmFormButton class="w-full mt-3 primary">注册</BmFormButton>
         </div>
         <Footer />
