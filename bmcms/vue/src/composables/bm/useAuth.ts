@@ -4,12 +4,9 @@ const storage = useStorage()
 
 export default () => {
   const form = reactive({
-    account: 'banmawang2021@163.com',
+    name: '237313142@qq.com',
     password: 'admin888',
     password_confirmation: 'admin888',
-    captcha: '',
-    captcha_key: '',
-    code: '',
   })
 
   //模型权限验证

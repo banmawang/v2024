@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { captcha, captcha_key } = defineProps<{
-  captcha: string
+const { captcha_value, captcha_key } = defineProps<{
+  captcha_value: string
   captcha_key: string
 }>()
 const emit = defineEmits(['update:captcha_key', 'update:captcha'])
-const { getCaptcha, captcha: captchaValue } = useCaptcha()
+const { getCaptcha, captcha } = useCaptcha()
 
-watch(captchaValue, () => {
-  emit('update:captcha_key', captchaValue.value?.key)
+watch(captcha, () => {
+  emit('update:captcha_key', captcha.value?.key)
 })
 
 await getCaptcha()
@@ -17,7 +17,8 @@ await getCaptcha()
   <main>
     <section class="flex gap-1">
       <BmFormInput @input="$emit('update:captcha', $event.target.value)" placeholder="验证码" />
-      <el-image :src="captchaValue?.img" class="rounded-md w-[180px] border cursor-pointer" @click="getCaptcha" />
+      <div v-html="captcha?.svg" @click="getCaptcha" class="border rounded-md"></div>
+      <!-- <el-image :src="captchaValue?.img" class="rounded-md w-[180px] border cursor-pointer" @click="getCaptcha" /> -->
     </section>
 
     <BmError name="captcha" />

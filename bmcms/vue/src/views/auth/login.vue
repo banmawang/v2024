@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Footer from './components/footer.vue'
-// import Captcha from '@/components/bm/captcha.vue'
 import WechatLogin from '@/components/bm/wechatLogin.vue'
 const { login, form } = useAuth()
 </script>
@@ -12,8 +11,8 @@ const { login, form } = useAuth()
         <div>
           <h2 class="text-center text-gray-700 text-lg mt-3">用户登录</h2>
           <div class="mt-8">
-            <BmFormInput v-model="form.account" placeholder="请输入邮箱" v-clearError="'account'" />
-            <BmError name="account" />
+            <BmFormInput v-model="form.name" placeholder="请输入邮箱" v-clearError="'account'" />
+            <BmError name="name" />
             <BmFormInput
               v-model="form.password"
               class="mt-3"
@@ -21,12 +20,9 @@ const { login, form } = useAuth()
               placeholder="请输入登录密码"
               v-clearError="'password'" />
             <BmError name="password" />
-            <!-- <Captcha class="mt-2" v-model:captcha="form.captcha" v-model:captcha_key="form.captcha_key" /> -->
           </div>
+          <BmCaptcha class="mt-3" />
           <BmFormButton class="w-full mt-3 primary">登录</BmFormButton>
-          <!-- <div class="flex justify-center mt-3">
-            <WechatLogin />
-          </div> -->
         </div>
         <Footer />
       </div>
