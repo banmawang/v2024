@@ -5,10 +5,14 @@ import { LoginDto } from './dto/login.dto'
 import { CurrentUser } from './current-user.decorator'
 import { User } from '@prisma/client'
 import { Admin } from './admin.decorator'
+import { CaptchaService } from 'src/captcha/captcha.service'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly captcha: CaptchaService,
+  ) {}
   /**
    * 注册
    * @param dto 校验规则
@@ -25,7 +29,8 @@ export class AuthController {
    * @returns token
    */
   @Post('login')
-  login(@Body() dto: LoginDto) {
+  async login(@Body() dto: LoginDto) {
+    await this.captcha.verify(dto.captcha as any)
     return this.authService.login(dto)
   }
 

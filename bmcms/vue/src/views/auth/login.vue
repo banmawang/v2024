@@ -21,7 +21,7 @@ const { login, form } = useAuth()
               v-clearError="'password'" />
             <BmError name="password" />
           </div>
-          <BmCaptcha class="mt-3" />
+          <BmCaptcha class="mt-3" v-model:captcha_value="form.captcha.value" v-model:captcha_key="form.captcha.key" />
           <BmFormButton class="w-full mt-3 primary">登录</BmFormButton>
         </div>
         <Footer />
