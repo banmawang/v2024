@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const tab = ref('password')
+const tab = ref('avatar')
+const { update } = useUser()
+const { user } = useUserStore()
 </script>
 
 <template>
-  <main>
+  <main v-if="user">
     <el-tabs v-model="tab" type="card" tab-position="top" @tab-click="">
       <el-tab-pane label="修改密码" name="password">
         <el-form label-width="80px" class="border p-5 rounded-lg">
@@ -30,8 +32,8 @@ const tab = ref('password')
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="设置头像" name="avatar">
-        <el-form label-width="80px" :inline="false" size="large" class="border p-5 rounded-2xl">
-          <!-- <BmUploadSingleImage v-model="form.avatar" url="upload/avatar" @finish="avatarFinish" /> -->
+        <el-form label-width="80px" :inline="false" size="large" class="border p-5 rounded-lg">
+          <BmUploadSingleImage v-model="user.avatar" @finish="update(user)" />
         </el-form>
       </el-tab-pane>
     </el-tabs>

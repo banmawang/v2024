@@ -25,7 +25,7 @@ export default () => {
   const update = async (data: any) => {
     model.value = await http.request<UserModel>({
       url: `user/update`,
-      method: 'PUT',
+      method: 'Put',
       data,
     })
     useUserStore().getCurrentUser()
