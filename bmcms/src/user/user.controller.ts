@@ -19,7 +19,8 @@ export class UserController {
 
   @Put('update')
   @Auth()
-  update(@Body() dto: UpdateUserDto, @CurrentUser() user: User) {
-    return this.userService.update(user.id, dto)
+  async update(@Body() dto: UpdateUserDto, @CurrentUser() user: User) {
+    await this.userService.update(user.id, dto)
+    return { message: '更新成功' }
   }
 }

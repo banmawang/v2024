@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const tab = ref('avatar')
+const tab = ref('info')
 const { update } = useUser()
 const { user } = useUserStore()
 </script>
@@ -7,27 +7,19 @@ const { user } = useUserStore()
 <template>
   <main v-if="user">
     <el-tabs v-model="tab" type="card" tab-position="top" @tab-click="">
-      <el-tab-pane label="修改密码" name="password">
+      <el-tab-pane label="基本资料" name="info">
         <el-form label-width="80px" class="border p-5 rounded-lg">
+          <el-form-item label="帐号">
+            <el-input placeholder="起个有个性的昵称吧" v-model="user.name" disabled></el-input>
+            <BmError name="name" />
+          </el-form-item>
           <el-form-item label="昵称">
-            <el-input placeholder="起个有个性的昵称吧"></el-input>
+            <el-input placeholder="起个有个性的昵称吧" v-model="user.nickname"></el-input>
             <BmError name="name" />
-          </el-form-item>
-          <el-form-item label="真实姓名">
-            <el-input placeholder="用于活动邮寄礼品使用"></el-input>
-            <BmError name="name" />
-          </el-form-item>
-          <el-form-item label="地址">
-            <el-input placeholder="用于参与网站活动，邮寄礼品等场景使用。请输入详细地址，包含省市县"></el-input>
-            <BmError name="address" />
-          </el-form-item>
-          <el-form-item label="个人网站">
-            <el-input>你的个人网站</el-input>
-            <BmError name="home" />
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary">确定修改</el-button>
+            <el-button type="primary" @click="update(user)">确定修改</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
