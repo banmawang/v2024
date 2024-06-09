@@ -19,6 +19,17 @@ interface UserModel {
   updated_at: string
 }
 
+interface ModelSoft {
+  id: number
+  title: string
+  content: string
+  description: string
+  preview: string
+  is_free: boolean
+  createdAt: string
+  updatedAt: string
+}
+
 interface ConfigModel {
   [key: string]: Record<string, any>
 }

@@ -27,11 +27,12 @@ model User {
 }
 
 model Soft {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String   @db.Text
-  preview   String
-  is_free   Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @db.Text
+  description String
+  preview     String
+  is_free     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
