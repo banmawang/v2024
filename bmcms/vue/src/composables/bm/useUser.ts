@@ -29,6 +29,11 @@ export default () => {
       data,
     })
     useUserStore().getCurrentUser()
+    ElMessage({
+      type: 'success',
+      message: '更新成功',
+      grouping: true,
+    })
   }
 
   const updatePassword = async (data: any) => {
