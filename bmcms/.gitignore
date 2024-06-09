@@ -6,6 +6,8 @@ prisma/*
 /node_modules
 /build
 /uploads
+/public/*
+!/public/.gitkeep
 
 # Logs
 logs
