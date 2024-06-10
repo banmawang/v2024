@@ -16,8 +16,7 @@ export class SoftService {
     })
   }
 
-  async findAll(page = 1) {
-    const row = 10
+  async findAll(page = 1, row = 10) {
     const data = await this.prisma.soft.findMany({
       skip: (page - 1) * row,
       take: row,

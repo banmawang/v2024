@@ -5,9 +5,9 @@ import { ElMessageBox } from 'element-plus'
 export default () => {
   const collections = ref<ApiPage<ModelSoft>>()
   const model = ref<Partial<ModelSoft>>({})
-  const getAll = async (page = 1) => {
+  const getAll = async (page = 1, row = 1) => {
     collections.value = await http.request({
-      url: `soft?page=${page}`,
+      url: `soft?page=${page}&row=${row}`,
     })
   }
 

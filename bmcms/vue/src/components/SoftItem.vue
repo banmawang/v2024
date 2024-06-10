@@ -2,7 +2,7 @@
 const { soft, showButton } = withDefaults(
   defineProps<{
     soft: ModelSoft
-    showButton: boolean
+    showButton?: boolean
   }>(),
   { showButton: false },
 )
