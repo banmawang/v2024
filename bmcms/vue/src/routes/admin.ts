@@ -19,6 +19,12 @@ export default [
         component: () => import('@/views/soft/admin.vue'),
         meta: { title: '软件管理', menu: { title: '软件管理' } },
       },
+      {
+        name: 'soft.create',
+        path: 'soft/create',
+        component: () => import('@/views/soft/create.vue'),
+        meta: { title: '软件发布' },
+      },
       // {
       //   name: 'admin.animateList',
       //   path: 'animateList',

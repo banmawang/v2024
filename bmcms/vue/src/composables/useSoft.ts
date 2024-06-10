@@ -1,11 +1,34 @@
 import { http } from '@/plugins/axios'
+import router from '@/plugins/router'
+import { ElMessageBox } from 'element-plus'
 
 export default () => {
   const collections = ref<ApiPage<ModelSoft>>()
+  const model = ref<Partial<ModelSoft>>({})
   const getAll = async (page = 1) => {
     collections.value = await http.request({
       url: `soft?page=${page}`,
     })
   }
-  return { getAll, collections }
+
+  const add = async () => {
+    await http.request({
+      url: `/soft`,
+      method: 'POST',
+      data: model.value,
+    })
+    router.push({ name: 'admin.soft' })
+  }
+
+  const del = async (id: number) => {
+    await ElMessageBox.confirm('确定删除软件吗?', '提示', {
+      type: 'warning',
+    })
+    await http.request({
+      url: `soft/${id}`,
+      method: 'DELETE',
+    })
+    location.reload()
+  }
+  return { getAll, collections, model, add, del }
 }

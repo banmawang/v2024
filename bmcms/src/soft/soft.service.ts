@@ -21,6 +21,9 @@ export class SoftService {
     const data = await this.prisma.soft.findMany({
       skip: (page - 1) * row,
       take: row,
+      orderBy: {
+        id: 'desc',
+      },
     })
     return {
       meta: { page, row, totle: await this.prisma.soft.count() },
