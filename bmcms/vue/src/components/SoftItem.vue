@@ -17,7 +17,7 @@ const { del } = useSoft()
     <div class="flex flex-col cursor-pointer" @click="open({ name: 'soft.show', params: { id: +soft.id } }, '_blank')">
       <img :src="soft.preview" :alt="soft.title" class="aspect-video object-cover" />
       <h2 class="text-center opacity-90 text-gray-900 p-3">{{ soft.title }}</h2>
-      <div class="text-sm opacity-70 px-2 line-clamp-2 flex-grow">
+      <div class="text-sm opacity-70 px-2 line-clamp-2 flex-grow mb-3 mx-3">
         {{ soft.description }}
       </div>
     </div>
