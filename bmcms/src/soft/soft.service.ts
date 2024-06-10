@@ -26,7 +26,7 @@ export class SoftService {
       },
     })
     return {
-      meta: { page, row, totle: await this.prisma.soft.count() },
+      meta: { page, row, total: await this.prisma.soft.count() },
       data,
     }
   }
