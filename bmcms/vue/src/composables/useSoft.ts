@@ -20,6 +20,15 @@ export default () => {
     router.push({ name: 'admin.soft' })
   }
 
+  const update = async () => {
+    await http.request({
+      url: `/soft/${model.value.id}`,
+      method: 'Patch',
+      data: model.value,
+    })
+    router.push({ name: 'admin.soft' })
+  }
+
   const del = async (id: number) => {
     await ElMessageBox.confirm('确定删除软件吗?', '提示', {
       type: 'warning',
@@ -30,5 +39,12 @@ export default () => {
     })
     location.reload()
   }
-  return { getAll, collections, model, add, del }
+
+  const find = (id: number) => {
+    return http.request<ModelSoft>({
+      url: `soft/${id}`,
+    })
+  }
+
+  return { getAll, collections, model, add, del, find, update }
 }

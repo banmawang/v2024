@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const { model, add } = useSoft()
+const { model, add, find, update } = useSoft()
+
+const route = useRoute()
+if (route.params.id) {
+  model.value = await find(+route.params.id)
+}
 </script>
 
 <template>
@@ -25,7 +30,7 @@ const { model, add } = useSoft()
         <BmError name="content" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="add">立即创建</el-button>
+        <el-button type="primary" @click="$route.params.id ? update() : add()">立即创建</el-button>
       </el-form-item>
     </el-form>
   </el-card>

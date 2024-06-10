@@ -19,7 +19,13 @@ const { del } = useSoft()
     </div>
 
     <div class="flex justify-center py-3 border-t mt-3" v-if="showButton">
-      <el-button type="success" plain size="small" @click="">编辑</el-button>
+      <el-button
+        type="success"
+        plain
+        size="small"
+        @click="$router.push({ name: 'soft.update', params: { id: +soft.id } })"
+        >编辑</el-button
+      >
       <el-button type="danger" plain size="small" @click="del(+soft.id)" class="!ml-2">删除</el-button>
     </div>
   </main>
