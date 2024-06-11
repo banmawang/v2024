@@ -27,6 +27,7 @@ export class CommentService {
       where: {
         softId: +sid,
       },
+      include: { user: true, replys: true },
     })
   }
 

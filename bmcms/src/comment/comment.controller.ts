@@ -27,8 +27,7 @@ export class CommentController {
   @UseGuards(PolicyGuard)
   @Policy(CommentPolicy)
   @Auth()
-  async remove(@Param('id') id: string, @CurrentUser() user: User) {
-    // return this.commentService.remove(+id)
-    return 'abc'
+  async remove(@Param('id') id: string) {
+    return this.commentService.remove(+id)
   }
 }

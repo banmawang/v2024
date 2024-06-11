@@ -1,7 +1,15 @@
+import { Comment, User } from '@prisma/client'
+import { Request } from 'express'
+import { PrismaService } from 'src/common/prisma.service'
 import { IPolicy } from 'src/policy/policy.decorator'
 
 export class CommentPolicy implements IPolicy {
-  remove() {
-    return true
+  constructor(
+    private prisma: PrismaService,
+    private request: Request,
+  ) {}
+  remove(model: Comment, user: User) {
+    console.log(model.userId, user.id)
+    return model.userId == user.id
   }
 }
