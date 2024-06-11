@@ -15,7 +15,7 @@ export class SoftController {
   }
 
   @Get()
-  findAll(@Query('page') page: number, @Query('row') row: number) {
+  findAll(@Query('page') page: number = 1, @Query('row') row: number = 10) {
     return this.softService.findAll(+page, +row)
   }
 
