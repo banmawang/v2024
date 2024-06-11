@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Delete, UseGuards } from '@nestjs/common'
 import { CommentService } from './comment.service'
 import { CreateCommentDto } from './dto/create-comment.dto'
-import { UpdateCommentDto } from './dto/update-comment.dto'
 import { CurrentUser } from 'src/auth/current-user.decorator'
 import { User } from '@prisma/client'
 import { Auth } from 'src/auth/auth.decorator'
+import { Policy } from 'src/policy/policy.decorator'
+import { CommentPolicy } from './comment.policy'
+import { PolicyGuard } from 'src/policy/policy.guard'
 
 @Controller('comment/:sid')
 export class CommentController {
@@ -17,22 +19,16 @@ export class CommentController {
   }
 
   @Get()
-  findAll() {
-    return this.commentService.findAll()
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.commentService.findOne(+id)
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
-    return this.commentService.update(+id, updateCommentDto)
+  findAll(@Param('sid') sid: number) {
+    return this.commentService.findAll(+sid)
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentService.remove(+id)
+  @UseGuards(PolicyGuard)
+  @Policy(CommentPolicy)
+  @Auth()
+  async remove(@Param('id') id: string, @CurrentUser() user: User) {
+    // return this.commentService.remove(+id)
+    return 'abc'
   }
 }

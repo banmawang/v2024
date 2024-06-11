@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import { UpdateCommentDto } from './dto/update-comment.dto'
 import { PrismaService } from 'src/common/prisma.service'
 import { User } from '@prisma/client'
 import { CreateCommentDto } from './dto/create-comment.dto'
@@ -23,19 +22,15 @@ export class CommentService {
     })
   }
 
-  findAll() {
-    return `This action returns all comment`
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} comment`
-  }
-
-  update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} comment`
+  findAll(sid: number) {
+    return this.prisma.comment.findMany({
+      where: {
+        softId: +sid,
+      },
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} comment`
+    return this.prisma.comment.deleteMany({ where: { id: id } })
   }
 }

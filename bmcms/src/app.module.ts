@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module'
 import { CaptchaModule } from './captcha/captcha.module'
 import { CacheModule } from '@nestjs/cache-manager'
 import { CommentModule } from './comment/comment.module';
+import { PolicyModule } from './policy/policy.module';
 @Module({
   imports: [
     CommonModule,
@@ -22,6 +23,7 @@ import { CommentModule } from './comment/comment.module';
       isGlobal: true,
     }),
     CommentModule,
+    PolicyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
