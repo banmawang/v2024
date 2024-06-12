@@ -7,6 +7,7 @@ import { Auth } from 'src/auth/auth.decorator'
 import { Policy } from 'src/policy/policy.decorator'
 import { CommentPolicy } from './comment.policy'
 import { PolicyGuard } from 'src/policy/policy.guard'
+import { CommentResponse } from './comment.response'
 
 @Controller('comment/:sid')
 export class CommentController {
@@ -19,8 +20,11 @@ export class CommentController {
   }
 
   @Get()
-  findAll(@Param('sid') sid: number) {
-    return this.commentService.findAll(+sid)
+  async findAll(@Param('sid') sid: number) {
+    const comments = await this.commentService.findAll(+sid)
+    return comments.map((comment) => {
+      return new CommentResponse(comment).make()
+    })
   }
 
   @Delete(':id')

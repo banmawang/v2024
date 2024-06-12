@@ -16,6 +16,7 @@ export default (sid: number) => {
       method: 'POST',
       data: model.value,
     })
+    location.reload()
   }
 
   const del = async (id: number) => {
