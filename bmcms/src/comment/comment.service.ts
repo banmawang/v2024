@@ -18,6 +18,7 @@ export class CommentService {
       },
       include: {
         replys: true,
+        user: true,
       },
     })
   }

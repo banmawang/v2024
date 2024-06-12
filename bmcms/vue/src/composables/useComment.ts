@@ -11,12 +11,13 @@ export default (sid: number) => {
   }
 
   const add = async () => {
-    await http.request({
+    const comment = await http.request<CommentModel>({
       url: `comment/${sid}`,
       method: 'POST',
       data: model.value,
     })
-    location.reload()
+    model.value.content = ''
+    collections.value.push(comment)
   }
 
   const del = async (id: number) => {

@@ -5,7 +5,7 @@ await findAll()
 </script>
 
 <template>
-  <main class="">
+  <main class="" v-if="collections.length">
     <CommentItem v-for="comment of collections" :key="comment.id" :comment="comment" />
     <section class="py-3">
       <BmMarkdownEditor v-model="model.content" />

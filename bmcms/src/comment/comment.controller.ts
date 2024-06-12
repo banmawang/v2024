@@ -15,8 +15,9 @@ export class CommentController {
 
   @Post()
   @Auth()
-  create(@Body() createCommentDto: CreateCommentDto, @CurrentUser() user: User, @Param('sid') sid: number) {
-    return this.commentService.create(createCommentDto, user, sid)
+  async create(@Body() createCommentDto: CreateCommentDto, @CurrentUser() user: User, @Param('sid') sid: number) {
+    const comment = await this.commentService.create(createCommentDto, user, sid)
+    return new CommentResponse(comment).make()
   }
 
   @Get()
