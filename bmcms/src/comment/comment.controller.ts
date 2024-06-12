@@ -8,6 +8,7 @@ import { Policy } from 'src/policy/policy.decorator'
 import { CommentPolicy } from './comment.policy'
 import { PolicyGuard } from 'src/policy/policy.guard'
 import { CommentResponse } from './comment.response'
+import { Throttle } from '@nestjs/throttler'
 
 @Controller('comment/:sid')
 export class CommentController {
@@ -15,6 +16,7 @@ export class CommentController {
 
   @Post()
   @Auth()
+  @Throttle({ default: { limit: 1, ttl: 20000 } })
   async create(@Body() createCommentDto: CreateCommentDto, @CurrentUser() user: User, @Param('sid') sid: number) {
     const comment = await this.commentService.create(createCommentDto, user, sid)
     return new CommentResponse(comment).make()
