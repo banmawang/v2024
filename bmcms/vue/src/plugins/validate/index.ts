@@ -1,5 +1,5 @@
 import * as veeValidate from 'vee-validate'
-import rules from '@vee-validate/rules'
+import { all } from '@vee-validate/rules'
 import { loadLocaleFromURL, localize } from '@vee-validate/i18n'
 import yup from './yup'
 import zh_CN from '@vee-validate/i18n/dist/locale/zh_CN.json'
@@ -13,9 +13,13 @@ veeValidate.configure({
   generateMessage: localize('zh_CN', zh_CN),
 })
 
-Object.keys(rules).forEach((key) => {
-  veeValidate.defineRule(key, rules[key])
+Object.entries(all).forEach(([name, rule]) => {
+  veeValidate.defineRule(name, rule)
 })
+
+// Object.keys(all).forEach((key) => {
+//   veeValidate.defineRule(key, rules[key])
+// })
 
 const useFields = (fields: string[]) => {
   fields.forEach((field) => veeValidate.useField(field))

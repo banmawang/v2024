@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 const { comment } = defineProps<{ comment: CommentModel }>()
+const showTextarea = ref(false)
+const { authorize } = useAuth()
+const emit = defineEmits<{
+  del: [id: number]
+}>()
 </script>
 
 <template>
@@ -15,18 +20,23 @@ const { comment } = defineProps<{ comment: CommentModel }>()
               <icon-time theme="outline" size="12" fill="#333" />
               {{ dayjs(comment.createdAt).fromNow() }}
             </div>
-            <div class="flex items-center cursor-pointer">
-              <icon-share-two theme="outline" size="12" fill="#333" />回复
+            <div
+              class="flex hover:text-red-500 duration-300 items-center cursor-pointer select-none"
+              @click="showTextarea = !showTextarea">
+              <icon-share-two theme="outline" size="12" />回复
             </div>
           </div>
         </div>
       </div>
-      <div class="flex cursor-pointer">
-        <icon-delete theme="outline" size="12" fill="#333" />
+      <div class="flex cursor-pointer" v-if="authorize(comment.id)">
+        <icon-delete theme="outline" size="12" fill="#333" @click="$emit('del', comment.id)" />
       </div>
     </div>
     <div class="p-3">
       {{ comment.content }}
+    </div>
+    <div class="p-3" v-if="showTextarea">
+      <el-input type="textarea" rows="5" size="default" clearable @change=""></el-input>
     </div>
   </section>
 </template>

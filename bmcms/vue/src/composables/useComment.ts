@@ -1,4 +1,5 @@
 import { http } from '@/plugins/axios'
+import { ElMessageBox } from 'element-plus'
 
 export default (sid: number) => {
   const collections = ref<CommentModel[]>([])
@@ -21,10 +22,15 @@ export default (sid: number) => {
   }
 
   const del = async (id: number) => {
+    await ElMessageBox.confirm('删除评论将无法恢复。确认删除？', '提示', {
+      type: 'warning',
+    })
     await http.request({
       url: `comment/${sid}/${id}`,
       method: 'DELETE',
     })
+    const index = collections.value.findIndex((item) => item.id == id)
+    collections.value.splice(index, 1)
   }
 
   return { findAll, add, del, collections, model }

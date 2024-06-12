@@ -3,7 +3,7 @@ import * as yup from 'yup'
 import { ErrorMessage, Field, Form } from 'vee-validate'
 
 const { sid } = defineProps<{ sid: number }>()
-const { collections, findAll, model, add } = useComment(sid)
+const { collections, findAll, model, add, del } = useComment(sid)
 await findAll()
 
 const schema = yup.object({
@@ -15,8 +15,10 @@ const schema = yup.object({
   <main class="">
     <section>
       <div v-for="comment of collections" :key="comment.id">
-        <CommentItem :comment="comment" />
-        <CommentItem v-for="reply of comment.replys" :key="reply.id" :comment="reply" />
+        <CommentItem :comment="comment" @del="del" />
+        <div class="mb-3 overflow-hidden ml-10 my-2 bg-gray-50">
+          <CommentItem v-for="reply of comment.replys" :key="reply.id" :comment="reply" @del="del" />
+        </div>
       </div>
     </section>
     <!-- 回复框 -->
