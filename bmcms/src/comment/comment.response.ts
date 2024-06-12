@@ -6,8 +6,8 @@ export class CommentResponse extends JsonResponse<Comment & { user: User }> {
   // protected hidden: (keyof User)[] = ['password']
   public make(): Comment & { user: User } {
     super.make()
-    // this.data.user = new UserResponse(this.data.user).make()
-    this.data.user = JsonResponse.handle(this.data.user, ['password'])
+    this.data.user = new UserResponse(this.data.user).make()
+    // this.data.user = JsonResponse.handle(this.data.user, ['password'])
     return this.data
   }
 }
