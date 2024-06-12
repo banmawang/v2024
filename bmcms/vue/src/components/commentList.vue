@@ -13,9 +13,13 @@ const schema = yup.object({
 
 <template>
   <main class="">
-    <section class="" v-if="collections.length">
-      <CommentItem v-for="comment of collections" :key="comment.id" :comment="comment" />
+    <section>
+      <div v-for="comment of collections" :key="comment.id">
+        <CommentItem :comment="comment" />
+        <CommentItem v-for="reply of comment.replys" :key="reply.id" :comment="reply" />
+      </div>
     </section>
+    <!-- 回复框 -->
     <section class="py-3">
       <Form
         :validation-schema="schema"
