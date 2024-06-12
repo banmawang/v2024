@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         'bm-blue': '#62569F',
       },
+      fontFamily: {
+        pfscr: 'PingFangSC-Regular',
+      },
       screens: {},
     },
   },

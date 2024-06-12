@@ -37,7 +37,7 @@ interface CommentModel {
   updatedAt: string
   userId: number
   softId: number
-  commentId: null
+  commentId?: any
   user: UserModel
   replys: CommentModel[]
 }

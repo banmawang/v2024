@@ -1,6 +1,5 @@
 body {
-  @apply bg-[#F5F4F8] text-gray-700 font-sans text-base;
-
+  @apply bg-[#F5F4F8] text-gray-700 font-pfscr text-base;
   a {
     &:hover {
       @apply text-[#16a085] duration-300;
