@@ -2,7 +2,7 @@
 // import * as yup from 'yup'
 // import { ErrorMessage, Field, Form } from 'vee-validate'
 
-const { sid } = defineProps<{ sid: number }>()
+const { sid } = defineProps<{ sid: number | undefined }>()
 const { collections, findAll, model, add, del } = useComment(sid)
 await findAll()
 const { exec, time } = useIntervalRequest(20, (data) => {

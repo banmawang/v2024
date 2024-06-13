@@ -2,12 +2,12 @@
 const { find, model } = useSoft()
 const route = useRoute()
 model.value = await find(+route.params.id)
-const tabName = ref('comment')
+const tabName = ref('content')
 </script>
 
 <template>
   <main>
-    <section class="bg-white p-5 rounded-md">
+    <section class="bg-white p-3 rounded-md">
       <h1 class="flex justify-between items-center font-bold text-xl opacity-80">
         {{ model.title }}
         <div class="">
@@ -20,7 +20,7 @@ const tabName = ref('comment')
       type="card"
       tab-position="top"
       @tab-click=""
-      class="bg-white rounded-md opacity-90 px-5 mt-5 pt-5">
+      class="bg-white rounded-md opacity-90 px-5 mt-2 pt-3">
       <el-tab-pane label="软件介绍" name="content">
         <section class="">
           <v-md-preview :text="model.content" />
