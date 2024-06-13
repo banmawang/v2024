@@ -4,9 +4,9 @@ const storage = useStorage()
 
 export default () => {
   const form = reactive({
-    name: 'admin',
-    password: 'admin888',
-    password_confirmation: 'admin888',
+    name: '',
+    password: '',
+    password_confirmation: '',
     captcha: {
       key: '',
       value: '',

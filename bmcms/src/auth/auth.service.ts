@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/common/prisma.service'
 import { RegisterDto } from './dto/register.dto'
 import { hash, verify } from 'argon2'
 import { LoginDto } from './dto/login.dto'
-import { validateFail } from 'src/helper'
+// import { validateFail } from 'src/helper'
 import { User } from '@prisma/client'
 import { JwtService } from '@nestjs/jwt'
 
@@ -54,7 +54,8 @@ export class AuthService {
 
     // if (!user) validateFail('name', '帐号不存在')
     if (!(await verify(user.password, dto.password))) {
-      validateFail('password', '帐号密码错误')
+      throw new BadRequestException('帐号或密码错误')
+      // validateFail('password', '帐号密码错误')
     }
 
     return this.token(user)

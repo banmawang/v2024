@@ -33,8 +33,9 @@ export default (sid: number) => {
       url: `comment/${sid}/${id}`,
       method: 'DELETE',
     })
-    const index = collections.value.findIndex((item) => item.id == id)
-    collections.value.splice(index, 1)
+    // const index = collections.value.findIndex((item) => item.id == id)
+    // collections.value.splice(index, 1)
+    findAll()
   }
 
   return { findAll, add, del, collections, model }

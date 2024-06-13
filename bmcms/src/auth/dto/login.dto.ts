@@ -9,6 +9,10 @@ export class LoginDto extends PartialType(RegisterDto) {
   @IsExists('user', ['name', 'email', 'mobile'], { message: '用户不存在' })
   name: string
 
+  @IsNotEmpty({ message: '密码不能为空' })
+  @Length(5, 20, { message: '密码不能小于5位' })
+  password: string
+
   @Allow()
   captcha: object
 }

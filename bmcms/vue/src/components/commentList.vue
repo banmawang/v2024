@@ -18,15 +18,9 @@ const { exec, time } = useIntervalRequest(20, (data) => {
   <main class="">
     <section>
       <div v-for="comment of collections" :key="comment.id">
-        <CommentItem :comment="comment" @del="del" @add="add" :time="time" />
+        <CommentItem :comment="comment" @del="del" @add="add" />
         <div class="mb-3 overflow-hidden ml-10 my-2 bg-gray-50">
-          <CommentItem
-            v-for="reply of comment.replys"
-            :key="reply.id"
-            :comment="reply"
-            @del="del"
-            @add="add"
-            :time="time" />
+          <CommentItem v-for="reply of comment.replys" :key="reply.id" :comment="reply" @del="del" @add="add" />
         </div>
       </div>
     </section>

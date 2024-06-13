@@ -31,8 +31,8 @@ const showTextarea = ref(false)
         <div class="flex flex-col text-sm">
           {{ comment.user.nickname }}
           <div class="flex items-center gap-2">
-            <div class="flex items-center">
-              <icon-time theme="outline" size="12" fill="#333" />
+            <div class="flex items-center gap-1">
+              <icon-time theme="outline" size="13" fill="#333" />
               {{ dayjs(comment.createdAt).fromNow() }}
             </div>
             <div
