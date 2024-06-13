@@ -12,6 +12,7 @@ export default {
       name: 'soft.show',
       path: `soft/:id`,
       component: () => import('@/views/soft/show.vue'),
+      meta: { auth: true },
     },
   ],
 } as RouteRecordRaw

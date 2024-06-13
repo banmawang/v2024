@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { user } = useUserStore()
 const { soft, showButton } = withDefaults(
   defineProps<{
     soft: ModelSoft
@@ -24,7 +25,7 @@ const { del } = useSoft()
       </div>
     </div>
 
-    <div class="flex justify-center py-3 border-t mt-3" v-if="showButton">
+    <div class="flex justify-center py-3 border-t mt-3" v-if="showButton && user?.id == 1">
       <el-button
         type="success"
         plain

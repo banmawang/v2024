@@ -54,7 +54,7 @@ export default () => {
         data: form,
       })
       storage.set(CacheEnum.TOKEN_NAME, token)
-      const route = router.resolve({ name: RouteEnum.ADMIN })
+      const route = router.resolve({ name: RouteEnum.HOME })
       location.href = route.fullPath
     } catch (error) {
       // useCaptcha().getCaptcha()

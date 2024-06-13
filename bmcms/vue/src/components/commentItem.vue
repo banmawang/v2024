@@ -12,7 +12,7 @@ const emit = defineEmits<{
 }>()
 
 const publishComment = () => {
-  emit('add', model.value)
+  emit('add', model.value as CommentModel)
   model.value.content = ''
   showTextarea.value = false
 }

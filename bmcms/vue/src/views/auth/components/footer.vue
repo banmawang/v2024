@@ -11,12 +11,12 @@
       class="text-xs text-gray-700">
       会员注册
     </router-link>
-    <router-link
+    <!-- <router-link
       v-if="$route.name != RouteEnum.FORGOT_PASSWORD"
       :to="{ name: RouteEnum.FORGOT_PASSWORD }"
       class="text-xs text-gray-700">
       找回密码
-    </router-link>
+    </router-link> -->
     <a href="/" class="text-xs text-gray-700">网站首页</a>
   </div>
 </template>

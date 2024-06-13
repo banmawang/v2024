@@ -11,7 +11,7 @@ export class CaptchaService {
   async create(ip: string) {
     const key = md5('captcha' + now() + ip)
     const captcha = svgCaptcha.createMathExpr({
-      mathMin: 10,
+      mathMin: 0,
       mathMax: 20,
       color: true,
       height: 40,

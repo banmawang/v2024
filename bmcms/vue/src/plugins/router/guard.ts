@@ -14,6 +14,7 @@ async function beforeEach(to: RouteLocationNormalized, from: RouteLocationNormal
   const { isLogin } = useAuth()
   const storage = useStorage()
 
+  console.log(to, '3333')
   if (to.meta.auth && !isLogin()) {
     storage.set(CacheEnum.REDIRECT_ROUTE_NAME, to.fullPath)
     ElMessage.success('请登录后操作')

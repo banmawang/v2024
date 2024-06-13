@@ -13,7 +13,7 @@ const storeUser = useUserStore()
     <section v-if="!!storeUser.user" class="flex items-center">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link flex items-center">
-          <a :href="RouteEnum.MEMBER" class="flex items-center overflow-hidden group flex-shrink-0 w-7 h-7 rounded-sm">
+          <a class="flex items-center overflow-hidden group flex-shrink-0 w-7 h-7 rounded-sm">
             <div
               class="el-image cursor-pointer flex-shrink-0 group-hover:scale-125 object-cover overflow-hidden duration-500 w-7 h-7 rounded-sm">
               <ElImage :src="storeUser.user.avatar" fit="cover" class="" />
