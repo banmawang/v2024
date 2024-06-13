@@ -15,7 +15,7 @@ const storeUser = useUserStore()
         <span class="el-dropdown-link flex items-center">
           <ElImage :src="storeUser.user.avatar" fit="cover" class="w-7 h-7 rounded-sm" />
           <div class="flex flex-col text-xs ml-2 text-gray-600 font-light">
-            {{ storeUser.user?.name }}
+            {{ storeUser.user?.nickname }}
             <span> {{ dayjs(storeUser.user?.created_at).fromNow() }}注册 </span>
           </div>
         </span>

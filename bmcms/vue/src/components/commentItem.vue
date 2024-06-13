@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 const { authorize } = useAuth()
+const { user } = useUserStore()
 const { comment } = defineProps<{ comment: CommentModel }>()
 const { model } = useComment(comment.softId)
 model.value.commentId = comment.commentId || comment.id
+model.value.repliedUserName = comment.user.nickname
 const emit = defineEmits<{
   del: [id: number]
   add: [comment: CommentModel]
@@ -29,10 +31,16 @@ const showTextarea = ref(false)
           </div>
         </a>
         <div class="flex flex-col text-sm">
-          {{ comment.user.nickname }}
+          <div class="flex font-bold text-gray-700">
+            <span class="hover:text-red-500 duration-300 cursor-pointer">{{ comment.user.nickname }}</span>
+            <div class="flex items-center" v-if="comment.repliedUserName">
+              <icon-right theme="outline" size="14" />
+              <span class="hover:text-red-500 duration-300 cursor-pointer">{{ comment.repliedUserName }}</span>
+            </div>
+          </div>
           <div class="flex items-center gap-2">
             <div class="flex items-center gap-1">
-              <icon-time theme="outline" size="13" fill="#333" />
+              <icon-time theme="outline" size="12" />
               {{ dayjs(comment.createdAt).fromNow() }}
             </div>
             <div
@@ -43,7 +51,7 @@ const showTextarea = ref(false)
           </div>
         </div>
       </div>
-      <div class="flex cursor-pointer" v-if="authorize(comment.id)">
+      <div class="flex cursor-pointer" v-if="user?.id == comment.userId || user?.id == 1">
         <icon-delete theme="outline" size="12" fill="#333" @click="$emit('del', comment.id)" />
       </div>
     </div>

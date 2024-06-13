@@ -38,6 +38,7 @@ interface CommentModel {
   userId: number
   softId: number
   commentId?: any
+  repliedUserName?: any
   user: UserModel
   replys: CommentModel[]
 }

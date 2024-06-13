@@ -8,13 +8,14 @@ export class CommentService {
   constructor(private prisma: PrismaService) {}
 
   create(createCommentDto: CreateCommentDto, user: User, sid: number) {
-    const { commentId, ...dto } = createCommentDto
+    const { commentId, repliedUserName, ...dto } = createCommentDto
     return this.prisma.comment.create({
       data: {
         ...dto,
         soft: { connect: { id: +sid } },
         user: { connect: { id: user.id } },
         reply: commentId && { connect: { id: +commentId } },
+        repliedUserName,
       },
       include: {
         replys: true,
