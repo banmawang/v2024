@@ -17,7 +17,6 @@ export default (sid: number) => {
       method: 'POST',
       data,
     })
-
     model.value.content = ''
     if (data.commentId) {
       collections.value.find((item) => item.id == data.commentId)?.replys.push(comment)

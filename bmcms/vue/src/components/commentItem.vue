@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 const { authorize } = useAuth()
-const { comment } = defineProps<{ comment: CommentModel; time: number }>()
+const { comment } = defineProps<{ comment: CommentModel }>()
 const { model } = useComment(comment.softId)
 model.value.commentId = comment.commentId || comment.id
 const emit = defineEmits<{
   del: [id: number]
   add: [comment: CommentModel]
 }>()
+
+const publishComment = () => {
+  emit('add', model.value)
+  model.value.content = ''
+  showTextarea.value = false
+}
 
 const showTextarea = ref(false)
 </script>
@@ -16,16 +22,23 @@ const showTextarea = ref(false)
   <section class="mb-3 border rounded-md bg-white opacity-90">
     <div class="flex justify-between items-baseline p-3 border-b">
       <div class="flex gap-2">
-        <img :src="comment.user.avatar" class="w-8 h-8 rounded-full" />
-        <div class="flex flex-col text-xs">
-          {{ comment.user.nickname }} #{{ comment.id }}
+        <a href="" class="flex items-center overflow-hidden group rounded-md flex-shrink-0 w-9 h-9">
+          <div
+            class="el-image cursor-pointer flex-shrink-0 group-hover:scale-125 object-cover overflow-hidden duration-500 w-9 h-9">
+            <img :src="comment.user.avatar" />
+          </div>
+        </a>
+        <div class="flex flex-col text-sm">
+          {{ comment.user.nickname }}
           <div class="flex items-center gap-2">
             <div class="flex items-center">
               <icon-time theme="outline" size="12" fill="#333" />
               {{ dayjs(comment.createdAt).fromNow() }}
             </div>
-            <div class="flex items-center cursor-pointer" @click="showTextarea = !showTextarea">
-              <icon-share-two theme="outline" size="12" fill="#333" /> 回复
+            <div
+              class="flex items-center cursor-pointer hover:text-red-500 duration-300 gap-1"
+              @click="showTextarea = !showTextarea">
+              <icon-share-two theme="outline" size="12" /> 回复 #{{ comment.id }}
             </div>
           </div>
         </div>
@@ -39,7 +52,7 @@ const showTextarea = ref(false)
     </div>
     <div class="p-3" v-if="showTextarea">
       <el-input v-model="model.content" type="textarea" size="default" clearable></el-input>
-      <el-button type="primary" size="small" @click="$emit('add', model)">发表</el-button>
+      <el-button type="primary" size="small" @click="publishComment">发表</el-button>
     </div>
   </section>
 </template>
