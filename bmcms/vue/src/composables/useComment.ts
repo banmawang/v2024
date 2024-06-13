@@ -12,7 +12,6 @@ export default (sid: number) => {
   }
 
   const add = async (data: CommentModel) => {
-    console.log(data)
     const comment = await http.request<CommentModel>({
       url: `comment/${sid}`,
       method: 'POST',

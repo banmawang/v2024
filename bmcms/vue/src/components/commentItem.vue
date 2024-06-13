@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 const { authorize } = useAuth()
-const { comment } = defineProps<{ comment: CommentModel }>()
+const { comment } = defineProps<{ comment: CommentModel; time: number }>()
 const { model } = useComment(comment.softId)
 model.value.commentId = comment.commentId || comment.id
 const emit = defineEmits<{
@@ -22,7 +22,7 @@ const showTextarea = ref(false)
           <div class="flex items-center gap-2">
             <div class="flex items-center">
               <icon-time theme="outline" size="12" fill="#333" />
-              {{ dayjs(comment.createAt).fromNow() }}
+              {{ dayjs(comment.createdAt).fromNow() }}
             </div>
             <div class="flex items-center cursor-pointer" @click="showTextarea = !showTextarea">
               <icon-share-two theme="outline" size="12" fill="#333" /> 回复
@@ -39,7 +39,7 @@ const showTextarea = ref(false)
     </div>
     <div class="p-3" v-if="showTextarea">
       <el-input v-model="model.content" type="textarea" size="default" clearable></el-input>
-      <el-button type="primary" size="small" @click="$emit('add', model)">回复</el-button>
+      <el-button type="primary" size="small" @click="$emit('add', model)">发表</el-button>
     </div>
   </section>
 </template>
