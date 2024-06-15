@@ -15,8 +15,8 @@ interface UserModel {
   wakatime?: string
   openid?: string
   unionid?: string
-  created_at: string
-  updated_at: string
+  createdAt: string
+  updatedAt: string
 }
 
 interface ModelSoft {

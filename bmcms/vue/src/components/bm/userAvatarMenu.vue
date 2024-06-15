@@ -21,7 +21,7 @@ const storeUser = useUserStore()
           </a>
           <div class="flex flex-col text-xs ml-2 text-gray-600 font-light">
             {{ storeUser.user?.nickname }}
-            <span> {{ dayjs(storeUser.user?.created_at).fromNow() }}注册 </span>
+            <span> {{ dayjs(storeUser.user?.createdAt).fromNow() }}注册 </span>
           </div>
         </span>
         <template #dropdown>

@@ -7,14 +7,14 @@ export default [
     component: () => import('@/layouts/admin/index.vue'),
     meta: { auth: true, menu: { title: 'Dashboard', icon: DashboardOne, order: 100 } },
     children: [
-      // {
-      //   name: 'admin',
-      //   path: '',
-      //   component: () => import('@/views/admin/index.vue'),
-      //   meta: { title: '工作台', menu: { title: '工作台' } },
-      // },
       {
         name: 'admin',
+        path: '',
+        component: () => import('@/views/admin/index.vue'),
+        meta: { title: '工作台', menu: { title: '工作台' } },
+      },
+      {
+        name: 'admin.soft',
         path: 'soft',
         component: () => import('@/views/soft/admin.vue'),
         meta: { title: '软件管理', menu: { title: '软件管理' } },
