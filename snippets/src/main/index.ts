@@ -2,15 +2,16 @@ import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import './ipc'
 
 function createWindow(): void {
   const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 500,
-    height: 400,
+    height: 350,
     x: width - 500,
-    y: 50,
+    y: 0,
     show: false,
     frame: false,
     transparent: true,
