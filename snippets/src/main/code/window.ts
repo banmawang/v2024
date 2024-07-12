@@ -1,17 +1,17 @@
 import { BrowserWindow, screen, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
-import * as ipc from './ipc'
 import { is } from '@electron-toolkit/utils'
 
-export function createWindow(): void {
+export function createWindow(): BrowserWindow {
   const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 500,
     height: 350,
-    x: width - 500,
-    y: 0,
+    center: true,
+    // x: width - 500,
+    // y: 0,
     show: false,
     frame: false,
     transparent: true,
@@ -23,7 +23,6 @@ export function createWindow(): void {
       sandbox: false
     }
   })
-  ipc.registerIpc(mainWindow)
   mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -41,4 +40,5 @@ export function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+  return mainWindow
 }
