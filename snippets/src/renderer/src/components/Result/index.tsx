@@ -1,11 +1,32 @@
 import useCode from '@renderer/hooks/useCode'
+import { useEffect, useState } from 'react'
+import './styles.scss'
+import classNames from 'classnames'
 
 export default function Result(): JSX.Element {
   const { data } = useCode()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const handleKeyEvent = (e: KeyboardEvent) => {
+    if (data.length === 0) return
+    switch (e.code) {
+      case 'ArrowUp':
+        setCurrentIndex((pre) => (pre - 1 <= 0 ? data.length - 1 : pre - 1))
+        break
+      case 'ArrowDown':
+        setCurrentIndex((pre) => (pre + 1 > data.length ? 0 : pre + 1))
+        break
+    }
+  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyEvent)
+    return () => {
+      document.removeEventListener('keydown', handleKeyEvent)
+    }
+  }, [data])
   return (
-    <main className="bg-slate-50 px-3 rounded-bl-lg rounded-br-lg -mt-[7px] pb-2">
-      {data.map((item) => (
-        <div key={item.id} className="text-slate-700 truncate mb-2">
+    <main className="main">
+      {data.map((item, index) => (
+        <div key={item.id} className={classNames(['div', { active: currentIndex == index }])}>
           {item.content}
         </div>
       ))}
