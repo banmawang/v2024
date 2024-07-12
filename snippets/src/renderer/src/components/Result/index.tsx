@@ -1,7 +1,7 @@
 import useCode from '@renderer/hooks/useCode'
 import { useEffect, useState } from 'react'
 import './styles.scss'
-import classNames from 'classnames'
+import { Banmashou } from './styled'
 
 export default function Result(): JSX.Element {
   const { data } = useCode()
@@ -26,9 +26,9 @@ export default function Result(): JSX.Element {
   return (
     <main className="main">
       {data.map((item, index) => (
-        <div key={item.id} className={classNames(['div', { active: currentIndex == index }])}>
+        <Banmashou isActive={currentIndex === index} key={item.id}>
           {item.content}
-        </div>
+        </Banmashou>
       ))}
     </main>
   )
