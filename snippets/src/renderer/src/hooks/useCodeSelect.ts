@@ -21,14 +21,18 @@ export default () => {
           })
           break
         case 'Enter': {
-          const content = data.find((item) => item.id === id)?.content
-          if (content) navigator.clipboard.writeText(content)
-          window.api.hideWindow()
+          selectItem(id)
         }
       }
     },
     [data, id]
   )
+
+  function selectItem(id: number) {
+    const content = data.find((item) => item.id === id)?.content
+    if (content) navigator.clipboard.writeText(content)
+    window.api.hideWindow()
+  }
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvent)
     return () => {
@@ -38,5 +42,5 @@ export default () => {
 
   useEffect(() => setId(0), [data])
 
-  return { data, id }
+  return { data, id, selectItem }
 }
