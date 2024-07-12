@@ -2,6 +2,7 @@ import useCode from '@renderer/hooks/useCode'
 import { useEffect, useState } from 'react'
 import './styles.scss'
 import { Banmashou } from './styled'
+import classNames from 'classnames'
 
 export default function Result(): JSX.Element {
   const { data } = useCode()
@@ -15,6 +16,8 @@ export default function Result(): JSX.Element {
       case 'ArrowDown':
         setCurrentIndex((pre) => (pre + 1 > data.length ? 0 : pre + 1))
         break
+      case 'Enter':
+        navigator.clipboard.writeText(data[currentIndex].content)
     }
   }
   useEffect(() => {
@@ -22,13 +25,13 @@ export default function Result(): JSX.Element {
     return () => {
       document.removeEventListener('keydown', handleKeyEvent)
     }
-  }, [data])
+  }, [data, currentIndex])
   return (
-    <main className="main">
+    <main className="result">
       {data.map((item, index) => (
-        <Banmashou isActive={currentIndex === index} key={item.id}>
+        <div key={item.id} className={classNames({ active: currentIndex == index })}>
           {item.content}
-        </Banmashou>
+        </div>
       ))}
     </main>
   )

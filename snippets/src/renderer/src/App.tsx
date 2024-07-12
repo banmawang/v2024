@@ -6,7 +6,6 @@ import { DataType } from './data'
 import { StyleSheetManager } from 'styled-components'
 import isPropValid from '@emotion/is-prop-valid'
 
-// <StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid
 function App(): JSX.Element {
   const [data, setData] = useState<DataType[]>([])
   return (
