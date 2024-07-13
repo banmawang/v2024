@@ -1,10 +1,21 @@
 import { SettingOne } from '@icon-park/react'
 import useSearch from '@renderer/hooks/useSearch'
+import { Input } from 'antd'
+import { useEffect, useRef } from 'react'
 
 export default function Search(): JSX.Element {
   const { search, handleSearch } = useSearch()
+  const mainRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    mainRef.current?.addEventListener('mouseover', (e: MouseEvent) => {
+      window.api.setIgnoreMouseEvents(false)
+    })
+    mainRef.current?.addEventListener('mouseout', (e: MouseEvent) => {
+      window.api.setIgnoreMouseEvents(true, { forward: true })
+    })
+  }, [])
   return (
-    <div className="bg-slate-50 p-3 rounded-lg drag">
+    <div className="bg-slate-50 p-3 rounded-lg drag" ref={mainRef}>
       <section className="bg-slate-200 p-3 rounded-lg flex items-center gap-1 nodrag">
         <SettingOne
           theme="outline"
@@ -14,13 +25,9 @@ export default function Search(): JSX.Element {
           className="cursor-pointer"
           onClick={() => alert('显示配置页面')}
         />
-        <input
-          value={search}
-          onChange={handleSearch}
-          className="w-full outline-none text-2xl text-slate-600 bg-slate-200"
-        />
+        <Input value={search} onChange={handleSearch} autoFocus />
       </section>
-      <section className="text-center text-slate-600 text-xs mt-2">斑马兽作品</section>
+      {/* <section className="text-center text-slate-600 text-xs mt-2">斑马兽作品</section> */}
     </div>
   )
 }

@@ -10,9 +10,11 @@ function App(): JSX.Element {
   register('search', 'ctrl+shift+;')
   return (
     <StyleSheetManager shouldForwardProp={isPropValid}>
-      <Error />
-      <Search />
-      <Result />
+      <main className="relative">
+        <Error />
+        <Search />
+        <Result />
+      </main>
     </StyleSheetManager>
   )
 }
