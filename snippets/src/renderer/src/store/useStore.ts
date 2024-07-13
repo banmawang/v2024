@@ -19,7 +19,4 @@ export const useStore = create<StateProps>((set) => ({
   setError: (message) => set({ error: message }),
   id: 0,
   setId: (id) => set({ id })
-  // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  // removeAllBears: () => set({ bears: 0 }),
-  // updateBears: (newBears) => set({ bears: newBears })
 }))
