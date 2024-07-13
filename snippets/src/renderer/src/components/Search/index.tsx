@@ -13,7 +13,7 @@ export default function Search(): JSX.Element {
           fill="#34495e"
           strokeWidth={4}
           className="cursor-pointer"
-          onClick={() => alert('显示配置页面')}
+          onClick={() => window.api.openConfigWindow()}
         />
         <Input value={search} onChange={handleSearch} autoFocus />
       </section>
