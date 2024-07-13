@@ -5,17 +5,8 @@ import { useEffect, useRef } from 'react'
 
 export default function Search(): JSX.Element {
   const { search, handleSearch } = useSearch()
-  const mainRef = useRef<HTMLDivElement | null>(null)
-  useEffect(() => {
-    mainRef.current?.addEventListener('mouseover', (e: MouseEvent) => {
-      window.api.setIgnoreMouseEvents(false)
-    })
-    mainRef.current?.addEventListener('mouseout', (e: MouseEvent) => {
-      window.api.setIgnoreMouseEvents(true, { forward: true })
-    })
-  }, [])
   return (
-    <div className="bg-slate-50 p-3 rounded-lg drag" ref={mainRef}>
+    <div className="bg-slate-50 p-3 rounded-lg drag">
       <section className="bg-slate-200 p-3 rounded-lg flex items-center gap-1 nodrag">
         <SettingOne
           theme="outline"
