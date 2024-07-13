@@ -7,10 +7,10 @@ import isPropValid from '@emotion/is-prop-valid'
 function App(): JSX.Element {
   return (
     <StyleSheetManager shouldForwardProp={isPropValid}>
-      <CodeProvider>
-        <Search />
-        <Result />
-      </CodeProvider>
+      {/* <CodeProvider> */}
+      <Search />
+      <Result />
+      {/* </CodeProvider> */}
     </StyleSheetManager>
   )
 }
