@@ -2,11 +2,12 @@ import { useStore } from '@renderer/store/useStore'
 import { useEffect } from 'react'
 
 function Error() {
-  const { error, setError } = useStore()
+  const { error, setError } = useStore((state) => state)
   useEffect(() => {
     const id = setTimeout(() => setError(''), 2000)
     return () => clearTimeout(id)
   }, [])
+
   if (!error) return <></>
 
   return (
