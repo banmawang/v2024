@@ -1,6 +1,10 @@
+import { useStore } from '@renderer/store/useStore'
+
 export default () => {
-  const register = (type: 'search', shortCut: string = 'ctrl+shift+;') => {
-    window.api.shortCut(type, shortCut)
+  const { setError } = useStore()
+  const register = async (type: 'search', shortCut: string = 'ctrl+shift+;') => {
+    const isBind = await window.api.shortCut(type, shortCut)
+    isBind || setError('快捷键注册失败')
   }
   return { register }
 }

@@ -1,27 +1,24 @@
-import { app, BrowserWindow, dialog, globalShortcut, ipcMain, IpcMainEvent } from 'electron'
+import { app, BrowserWindow, dialog, globalShortcut, ipcMain, IpcMainInvokeEvent } from 'electron'
 const config = {
   search: ''
 }
 export const registerShortcut = (win: BrowserWindow) => {
   // 检查快捷键是否注册成功
-  ipcMain.on('shortCut', (_event: IpcMainEvent, type: 'search', shortCut: string) => {
-    if (config.search) globalShortcut.unregister(config.search)
+  ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search', shortCut: string) => {
+    // if (config.search) globalShortcut.unregister(config.search)
     config.search = shortCut
 
     switch (type) {
       case 'search':
-        registerSearchShortCur(win, shortCut)
-        break
+        return registerSearchShortCur(win, shortCut)
     }
   })
 }
 
 function registerSearchShortCur(win: BrowserWindow, shortCut: string) {
-  const ret = globalShortcut.register(shortCut, () => {
+  return globalShortcut.register(shortCut, () => {
     win.isVisible() ? win.hide() : win.show()
   })
-
-  if (!ret) dialog.showErrorBox('温馨提示', '快捷键注册失败')
 }
 
 app.on('will-quit', () => {
