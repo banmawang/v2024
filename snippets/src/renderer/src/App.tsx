@@ -1,16 +1,16 @@
 import Result from './components/Result'
 import Search from './components/Search'
-import { CodeProvider } from './context/CodeContext'
 import { StyleSheetManager } from 'styled-components'
 import isPropValid from '@emotion/is-prop-valid'
+import useShortCut from './hooks/useShortCut'
 
 function App(): JSX.Element {
+  const { register } = useShortCut()
+  register('search', 'ctrl+shift+;')
   return (
     <StyleSheetManager shouldForwardProp={isPropValid}>
-      {/* <CodeProvider> */}
       <Search />
       <Result />
-      {/* </CodeProvider> */}
     </StyleSheetManager>
   )
 }
