@@ -1,7 +1,7 @@
-import { BrowserWindow, screen, shell } from 'electron'
+import { is } from '@electron-toolkit/utils'
+import { BrowserWindow, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
-import { is } from '@electron-toolkit/utils'
 
 export function createWindow(): BrowserWindow {
   // const { width } = screen.getPrimaryDisplay().workAreaSize
