@@ -1,9 +1,9 @@
-import useCodeSelect from '@renderer/hooks/useCodeSelect'
+import useSelect from '@renderer/hooks/useSelect'
 import './styles.scss'
 import classNames from 'classnames'
 
 export default function Result(): JSX.Element {
-  const { data, id, selectItem } = useCodeSelect()
+  const { data, id, selectItem } = useSelect()
   return (
     <main className="result">
       {data.map((item) => (

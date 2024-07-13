@@ -25,6 +25,7 @@
     "@electron-toolkit/utils": "^3.0.0",
     "@emotion/is-prop-valid": "^1.2.2",
     "@icon-park/react": "^1.4.2",
+    "antd": "^5.19.1",
     "classnames": "^2.5.1",
     "electron-updater": "^6.1.7",
     "styled-components": "^6.1.11",
