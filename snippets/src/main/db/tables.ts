@@ -1,3 +1,4 @@
+import { Random } from 'mockjs'
 import { db } from './connect'
 
 db.exec(`
@@ -18,10 +19,17 @@ db.exec(`
   );
 `)
 
-db.exec(`
-  INSERT INTO categories (name, created_at) VALUES ('bm', datetime());
-`)
-
-db.exec(`
-  INSERT INTO contents (title, content, category_id, created_at) VALUES ('react', 'zustand', 1, datetime());
+for (let i = 0; i < 10; i++) {
+  const name = Random.title(5, 10)
+  db.exec(`
+    INSERT INTO categories (name, created_at) VALUES ('${name}', datetime());
   `)
+
+  for (let j = 1; j < 20; j++) {
+    const title = Random.title(5, 10)
+    const content = Random.paragraph(5, 10)
+    db.exec(`
+      INSERT INTO contents (title, content, category_id, created_at) VALUES ('${title}', '${content}', ${i}, datetime());
+      `)
+  }
+}

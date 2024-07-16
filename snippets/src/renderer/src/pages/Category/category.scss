@@ -3,15 +3,21 @@
   display: grid;
   grid-template:
     'categories content' auto
-    'nav content' 30px/100px auto;
+    'nav content' 30px/150px auto;
 
   .categories {
     grid-area: categories;
-    @apply border-r bg-slate-100 text-xs text-slate-700;
+    @apply border-r bg-slate-100 text-xs text-slate-700 overflow-y-auto;
+    a {
+      @apply px-2 py-1 truncate cursor-pointer block;
+      &.active {
+        @apply bg-blue-600 text-white mx-1 rounded-md;
+      }
+    }
   }
   .nav {
     grid-area: nav;
-    @apply border-r border-t bg-slate-100 flex justify-center items-center gap-3;
+    @apply border-r border-t bg-slate-100 flex justify-center items-center gap-2;
   }
   .content {
     grid-area: content;
