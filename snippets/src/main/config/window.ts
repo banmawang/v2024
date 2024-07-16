@@ -7,14 +7,14 @@ import icon from '../../../resources/icon.png?asset'
 export function createWindow(): BrowserWindow {
   const { width: winWidth } = screen.getPrimaryDisplay().workAreaSize
   const width = 500
-  const height = 500
+  const height = 350
   // Create the browser window.
   const win = new BrowserWindow({
     width,
     height,
     center: true,
     x: winWidth - width,
-    y: 0,
+    y: 100,
     show: false,
     // frame: false,
     // transparent: true,
