@@ -1,8 +1,8 @@
 import { app } from 'electron'
-import { createWindow } from './window'
+import ignoreMouseEvents from './ignoreMouseEvents'
 import { registerIpc } from './ipc'
 import { registerShortcut } from './shortCut'
-import ignoreMouseEvents from './ignoreMouseEvents'
+import { createWindow } from './window'
 
 app.whenReady().then(() => {
   const win = createWindow()

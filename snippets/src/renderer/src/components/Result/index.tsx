@@ -1,6 +1,6 @@
 import useSelect from '@renderer/hooks/useSelect'
-import './styles.scss'
 import classNames from 'classnames'
+import './styles.scss'
 
 export default function Result(): JSX.Element {
   const { data, id, selectItem } = useSelect()

@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react'
 import { codes } from '@renderer/data'
 import { useStore } from '@renderer/store/useStore'
+import { ChangeEvent } from 'react'
 
 export default () => {
   const { setData } = useStore((state) => state)

@@ -1,17 +1,18 @@
 import { is } from '@electron-toolkit/utils'
-import { BrowserWindow, shell } from 'electron'
+import { BrowserWindow, screen, shell } from 'electron'
 import url from 'node:url'
 import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
 
 export function createWindow(): BrowserWindow {
+  const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
+    width: 600,
     height: 500,
     center: true,
-    // x: width - 500,
-    // y: 0,
+    x: width - 500,
+    y: 0,
     show: false,
     // frame: false,
     // transparent: true,
@@ -24,7 +25,7 @@ export function createWindow(): BrowserWindow {
     }
   })
   // win.setIgnoreMouseEvents(true, { forward: true })
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
   win.on('ready-to-show', () => {
     win.show()
   })
