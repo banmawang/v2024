@@ -12,6 +12,5 @@
     ".vscode": true,
     "node_modules": true
   },
-  "files.eol": "auto",
   "editor.formatOnSave": true
 }

@@ -5,13 +5,15 @@ import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
 
 export function createWindow(): BrowserWindow {
-  const { width } = screen.getPrimaryDisplay().workAreaSize
+  const { width: winWidth } = screen.getPrimaryDisplay().workAreaSize
+  const width = 500
+  const height = 500
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 600,
-    height: 500,
+    width,
+    height,
     center: true,
-    x: width - 500,
+    x: winWidth - width,
     y: 0,
     show: false,
     // frame: false,
@@ -25,7 +27,7 @@ export function createWindow(): BrowserWindow {
     }
   })
   // win.setIgnoreMouseEvents(true, { forward: true })
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
   win.on('ready-to-show', () => {
     win.show()
   })
