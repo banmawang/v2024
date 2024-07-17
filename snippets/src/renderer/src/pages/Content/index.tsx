@@ -10,6 +10,7 @@ export const Content = () => {
         {/* <h1>{content.title}</h1> */}
         <input
           name="title"
+          autoFocus
           defaultValue={content.title}
           onChange={(e) => {
             submit(e.target.form)
@@ -18,6 +19,7 @@ export const Content = () => {
         {/* <div className="content">{content.content}</div> */}
         <textarea
           name="content"
+          placeholder="请输入内容..."
           defaultValue={content.content}
           onChange={(e) => {
             submit(e.target.form)
