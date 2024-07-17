@@ -5,6 +5,7 @@ import { Content } from '@renderer/pages/Content'
 import ContentAction from '@renderer/pages/Content/ContentAction'
 import ContentLoader from '@renderer/pages/Content/ContentLoader'
 import { ContentList } from '@renderer/pages/ContentList'
+import ContentListAction from '@renderer/pages/ContentList/ContentListAction'
 import ContentListLoader from '@renderer/pages/ContentList/ContentListLoader'
 import Home from '@renderer/pages/Home'
 import { Welcome } from '@renderer/pages/Welcome'
@@ -25,14 +26,15 @@ const router = createHashRouter([
         loader: CategoryLoader,
         children: [
           {
-            index: true,
-            element: <Welcome />
-          },
-          {
-            path: 'contentList/:cid',
+            path: 'contentList/:cid?',
             loader: ContentListLoader,
+            action: ContentListAction,
             element: <ContentList />,
             children: [
+              {
+                index: true,
+                element: <Welcome />
+              },
               {
                 path: 'content/:id',
                 loader: ContentLoader,
