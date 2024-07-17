@@ -1,16 +1,15 @@
 import { Add, DatabaseSetting, FolderClose } from '@icon-park/react'
-import { useEffect } from 'react'
-import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import './category.scss'
 
 export const Category = () => {
   const categories = useLoaderData() as CategoryType[]
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (categories.length) {
-      navigate(`/config/category/contentList/${categories[0].id}`)
-    }
-  }, [categories])
+  // const navigate = useNavigate()
+  // useEffect(() => {
+  //   if (categories.length) {
+  //     navigate(`/config/category/contentList/${categories[0].id}`)
+  //   }
+  // }, [categories])
   return (
     <main className="category-page">
       <div className="categories">

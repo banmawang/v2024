@@ -1,18 +1,28 @@
-import { Form, useLoaderData } from 'react-router-dom'
+import { Form, useLoaderData, useSubmit } from 'react-router-dom'
 import './content.scss'
 
 export const Content = () => {
   const content = useLoaderData() as ContentType
+  const submit = useSubmit()
   return (
     <Form method="PUT">
       <main className="content-page" key={content.id}>
         {/* <h1>{content.title}</h1> */}
-        <input name="title" defaultValue={content.title} />
+        <input
+          name="title"
+          defaultValue={content.title}
+          onChange={(e) => {
+            submit(e.target.form)
+          }}
+        />
         {/* <div className="content">{content.content}</div> */}
-        <textarea name="content" defaultValue={content.content} />
-        <div className="border-t flex items-center justify-center">
-          <button>保存</button>
-        </div>
+        <textarea
+          name="content"
+          defaultValue={content.content}
+          onChange={(e) => {
+            submit(e.target.form)
+          }}
+        />
       </main>
     </Form>
   )
