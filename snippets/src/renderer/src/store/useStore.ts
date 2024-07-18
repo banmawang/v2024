@@ -9,6 +9,8 @@ interface StateProps {
   setError: (message: string) => void
   id: number
   setId: (id: number) => void
+  editCategoryId: number
+  setEditCategoryId: (id: number) => void
 }
 export const useStore = create<StateProps>((set) => ({
   data: [],
@@ -18,5 +20,7 @@ export const useStore = create<StateProps>((set) => ({
   error: '',
   setError: (message) => set({ error: message }),
   id: 0,
-  setId: (id) => set({ id })
+  setId: (id) => set({ id }),
+  editCategoryId: 0,
+  setEditCategoryId: (editCategoryId) => set({ editCategoryId })
 }))
