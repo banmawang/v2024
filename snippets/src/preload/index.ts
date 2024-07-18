@@ -3,9 +3,6 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 // Custom APIs for renderer
 const api = {
-  hideWindow: () => {
-    ipcRenderer.send('hideWindow')
-  },
   shortCut: (type: 'search', chortCut: string) => {
     return ipcRenderer.invoke('shortCut', type, chortCut)
   },
@@ -18,6 +15,12 @@ const api = {
   },
   sql: (sql: string, type: SqlActionType, params = {}) => {
     return ipcRenderer.invoke('sql', sql, type, params)
+  },
+  openWindow: (name: WindowNameType) => {
+    ipcRenderer.send('openWindow', name)
+  },
+  closeWindow: (name: WindowNameType) => {
+    ipcRenderer.send('hideWindow', name)
   }
 }
 

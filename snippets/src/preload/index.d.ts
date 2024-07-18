@@ -4,7 +4,6 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      hideWindow: () => void
       shortCut: (type: 'search', shortCut: string) => Promise<boolean>
       setIgnoreMouseEvents: (ignore: boolean, options?: { forward: boolean }) => void
       openConfigWindow: () => void
@@ -13,6 +12,8 @@ declare global {
         type: SqlActionType,
         params?: Record<string, string | number>
       ) => Promise<T>
+      openWindow: (name: WindowNameType) => void
+      closeWindow: (name: WindowNameType) => void
     }
   }
 }
