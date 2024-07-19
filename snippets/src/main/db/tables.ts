@@ -33,7 +33,7 @@ export function initTable() {
 function initData() {
   const isInit = findOne('select * from contents')
   if (isInit) return
-  db().exec(`INSERT INTO config (content) VALUES('{"shortCut":"Alt+J","databaseDirectory":"df"}')`)
+  db().exec(`INSERT INTO config (content) VALUES('{"shortCut":"","databaseDirectory":""}')`)
   for (let i = 1; i <= 10; i++) {
     const name = Random.title(5, 10)
     db().exec(`
