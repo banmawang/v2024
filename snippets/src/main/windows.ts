@@ -5,17 +5,33 @@ export const config = {
   search: {
     id: 0,
     options: {
-      hash: ''
+      initShwo: true,
+      hash: '',
+      openDevTools: false
+    }
+  },
+  code: {
+    id: 0,
+    options: {
+      initShow: false,
+      width: 600,
+      height: 400,
+      frame: true,
+      transparent: false,
+      openDevTools: false,
+      hash: '/#config/category/contentList'
     }
   },
   config: {
     id: 0,
     options: {
-      width: 1300,
-      height: 600,
+      initShwo: true,
+      width: 600,
+      height: 400,
       frame: true,
       transparent: false,
-      hash: '/#config/category/contentList'
+      openDevTools: true,
+      hash: '/#config'
     }
   }
 } as Record<WindowNameType, { id: number; options: OptionsType }>
@@ -45,4 +61,5 @@ export const getWindowByEvent = (event: IpcMainEvent | IpcMainInvokeEvent) => {
 
 app.whenReady().then(() => {
   getByNameWindow('search')
+  getByNameWindow('config')
 })

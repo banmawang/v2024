@@ -1,6 +1,9 @@
 import { DataType } from '@renderer/data'
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 interface StateProps {
+  config: ConfigDataType
+  setConfig: (config: ConfigDataType) => void
   data: DataType[]
   setData: (data: DataType[]) => void
   search: string
@@ -12,15 +15,25 @@ interface StateProps {
   editCategoryId: number
   setEditCategoryId: (id: number) => void
 }
-export const useStore = create<StateProps>((set) => ({
-  data: [],
-  setData: (data) => set({ data }),
-  search: '',
-  setSearch: (content) => set({ search: content }),
-  error: '',
-  setError: (message) => set({ error: message }),
-  id: 0,
-  setId: (id) => set({ id }),
-  editCategoryId: 0,
-  setEditCategoryId: (editCategoryId) => set({ editCategoryId })
-}))
+export const useStore = create(
+  persist<StateProps>(
+    (set) => ({
+      config: { databaseDirectory: '', shortCut: '' },
+      setConfig: (config) => set({ config }),
+      data: [],
+      setData: (data) => set({ data }),
+      search: '',
+      setSearch: (content) => set({ search: content }),
+      error: '',
+      setError: (message) => set({ error: message }),
+      id: 0,
+      setId: (id) => set({ id }),
+      editCategoryId: 0,
+      setEditCategoryId: (editCategoryId) => set({ editCategoryId })
+    }),
+    {
+      name: 'banmashou-storage',
+      storage: createJSONStorage(() => localStorage)
+    }
+  )
+)

@@ -13,11 +13,16 @@ export default function Search(): JSX.Element {
           fill="#34495e"
           strokeWidth={4}
           className="cursor-pointer"
-          onClick={() => window.api.openWindow('config')}
+          onClick={() => window.api.openWindow('code')}
         />
         <Input value={search} onChange={handleSearch} autoFocus />
       </section>
-      {/* <section className="text-center text-slate-600 text-xs mt-2">斑马兽作品</section> */}
+      <section className="text-center text-slate-600 text-xs mt-2 nodrag">
+        斑马兽作品
+        <span className="text-blue-600" onClick={() => window.api.openWindow('config')}>
+          配置
+        </span>
+      </section>
     </div>
   )
 }

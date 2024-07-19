@@ -7,6 +7,7 @@ import icon from '../../resources/icon.png?asset'
 export interface OptionsType extends Partial<BrowserWindowConstructorOptions> {
   openDevTools?: boolean
   hash?: string
+  initShwo?: boolean
 }
 export function createWindow(options: OptionsType): BrowserWindow {
   const { width } = screen.getPrimaryDisplay().workAreaSize
@@ -35,7 +36,7 @@ export function createWindow(options: OptionsType): BrowserWindow {
   )
   if (is.dev && options.openDevTools) win.webContents.openDevTools()
   win.on('ready-to-show', () => {
-    win.show()
+    options.initShwo && win.show()
   })
 
   win.webContents.setWindowOpenHandler((details) => {

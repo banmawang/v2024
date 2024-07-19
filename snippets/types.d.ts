@@ -1,4 +1,4 @@
-type SqlActionType = 'findAll' | 'findOne' | 'insert' | 'update' | 'del'
+type SqlActionType = 'findAll' | 'findOne' | 'insert' | 'update' | 'del' | 'config'
 
 type CategoryType = {
   id: number
@@ -14,4 +14,14 @@ type ContentType = {
   created_at: string
 }
 
-type WindowNameType = 'search' | 'config'
+type ConfigType = {
+  id: number
+  content: string
+}
+
+type ConfigDataType = {
+  shortCut: string
+  databaseDirectory: string
+}
+
+type WindowNameType = 'search' | 'config' | 'code'

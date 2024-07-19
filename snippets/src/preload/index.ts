@@ -3,8 +3,8 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 // Custom APIs for renderer
 const api = {
-  shortCut: (type: 'search', chortCut: string) => {
-    return ipcRenderer.invoke('shortCut', type, chortCut)
+  shortCut: (shortCut: string) => {
+    return ipcRenderer.invoke('shortCut', shortCut)
   },
   setIgnoreMouseEvents: (ignore: boolean, options?: { forward: boolean }) => {
     ipcRenderer.send('setIgnoreMouseEvents', ignore, options)
@@ -21,6 +21,15 @@ const api = {
   },
   closeWindow: (name: WindowNameType) => {
     ipcRenderer.send('hideWindow', name)
+  },
+  selectDatabaseDirectory: () => {
+    return ipcRenderer.invoke('selectDatabaseDirectory')
+  },
+  setDatabaseDirectory: (path: string) => {
+    ipcRenderer.send('setDatabaseDirectory', path)
+  },
+  initTable: () => {
+    ipcRenderer.send('initTable')
   }
 }
 

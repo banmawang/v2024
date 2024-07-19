@@ -3,7 +3,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { createWindow } from './createWindow'
 import './db'
 import './ipc'
-import './shortCut'
+import { registerAppGlobShortcut } from './shortCut'
 import './windows'
 import { config } from './windows'
 // import './code'
@@ -12,6 +12,7 @@ import { config } from './windows'
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  registerAppGlobShortcut()
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
