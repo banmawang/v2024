@@ -14,11 +14,11 @@ export const config = {
     id: 0,
     options: {
       initShow: false,
-      width: 600,
-      height: 400,
+      openDevTools: false,
+      width: 1060,
+      height: 600,
       frame: true,
       transparent: false,
-      openDevTools: false,
       hash: '/#config/category/contentList'
     }
   },
@@ -26,11 +26,11 @@ export const config = {
     id: 0,
     options: {
       initShwo: false,
-      width: 600,
-      height: 400,
+      openDevTools: false,
+      width: 505,
+      height: 350,
       frame: true,
       transparent: false,
-      openDevTools: false,
       hash: '/#config'
     }
   }

@@ -39,7 +39,7 @@ export default () => {
     if (content) await navigator.clipboard.writeText(content)
     setData([])
     setSearch('')
-    window.api.hideWindow()
+    window.api.closeWindow('search')
   }
 
   useEffect(() => {

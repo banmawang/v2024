@@ -1,5 +1,5 @@
 import { is } from '@electron-toolkit/utils'
-import { BrowserWindow, BrowserWindowConstructorOptions, screen, shell } from 'electron'
+import { BrowserWindow, BrowserWindowConstructorOptions, shell } from 'electron'
 import url from 'node:url'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
@@ -10,7 +10,7 @@ export interface OptionsType extends Partial<BrowserWindowConstructorOptions> {
   initShwo?: boolean
 }
 export function createWindow(options: OptionsType): BrowserWindow {
-  const { width } = screen.getPrimaryDisplay().workAreaSize
+  // const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const win = new BrowserWindow(
     Object.assign(
@@ -18,8 +18,8 @@ export function createWindow(options: OptionsType): BrowserWindow {
         width: 500,
         height: 350,
         center: true,
-        x: width - 500,
-        y: 0,
+        // x: width - 500,
+        // y: 0,
         show: false,
         frame: false,
         transparent: true,
@@ -59,7 +59,7 @@ export function createWindow(options: OptionsType): BrowserWindow {
         //protocol 后面需要两个/
         slashes: true,
         //hash 的值
-        hash: 'config/category/contentList'
+        hash: options.hash?.substring(1)
       })
     )
   }
