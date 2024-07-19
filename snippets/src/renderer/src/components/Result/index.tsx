@@ -14,7 +14,7 @@ export default function Result(): JSX.Element {
             selectItem(item.id)
           }}
         >
-          {item.content}
+          {item.title}
         </div>
       ))}
     </main>

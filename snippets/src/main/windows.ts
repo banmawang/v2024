@@ -25,12 +25,12 @@ export const config = {
   config: {
     id: 0,
     options: {
-      initShwo: true,
+      initShwo: false,
       width: 600,
       height: 400,
       frame: true,
       transparent: false,
-      openDevTools: true,
+      openDevTools: false,
       hash: '/#config'
     }
   }

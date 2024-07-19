@@ -5,22 +5,28 @@ export default () => {
   const { data, setData, setSearch, id, setId } = useStore((state) => state)
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
-      if (data.length === 0) return
       switch (e.code) {
         case 'ArrowUp':
           {
+            if (data.length === 0) return
             const index = data.findIndex((item) => item.id == id)
             setId(data[index - 1]?.id || data[data.length - 1].id)
           }
           break
         case 'ArrowDown':
           {
+            if (data.length === 0) return
             const index = data.findIndex((item) => item.id == id)
             setId(data[index + 1]?.id || data[0].id)
           }
           break
         case 'Enter': {
           selectItem(id)
+          window.api.closeWindow('search')
+          break
+        }
+        case 'Escape': {
+          window.api.closeWindow('search')
         }
       }
     },
